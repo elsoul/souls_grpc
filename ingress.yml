@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: graphql-api-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: graphql-ip
+    ingress.gcp.kubernetes.io/pre-shared-cert: graphql-ssl
+spec:
+  rules:
+  - host: graphql-api.el-soul.com
+    http:
+      paths:
+      - backend:
+          serviceName: graphql-api-service
+          servicePort: 80
