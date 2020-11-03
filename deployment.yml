@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: graphql-api
+  name: graphql-api
+spec:
+  selector:
+    matchLabels:
+      app: graphql-api
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: graphql-api
+    spec:
+      containers:
+      - name: graphql-api
+        image: asia.gcr.io/elsoul2/graphql-api:0.0.1
+        ports:
+          - containerPort: 3000
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: db_host
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: db_user
+        - name: DB_PW
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: db_pw
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: secret_key_base
+        - name: PROJECT_ID
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: project_id
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: google_application_credentials
+        - name: GRPC_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              name: graphql-api-secret
+              key: grpc_server_url
+        - name: GRPC_XDS_BOOTSTRAP
+          value: "/tmp/grpc-xds/td-grpc-bootstrap.json"
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2000Mi
+          requests:
+            cpu: 300m
+            memory: 1500Mi
+        volumeMounts:
+        - name: grpc-td-conf
+          mountPath: /tmp/grpc-xds/
+      initContainers:
+      - args:
+        - --output
+        - "/tmp/bootstrap/td-grpc-bootstrap.json"
+        image: gcr.io/trafficdirector-prod/td-grpc-bootstrap:0.9.0
+        imagePullPolicy: IfNotPresent
+        name: grpc-td-init
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        volumeMounts:
+        - name: grpc-td-conf
+          mountPath: /tmp/bootstrap/
+      volumes:
+      - name: grpc-td-conf
+        emptyDir:
+          medium: Memory
