@@ -19,6 +19,7 @@ gem "rails", "6.0.3.3"
 gem "rails-gke", "0.6.4"
 gem "rb-readline", "0.5.5"
 gem "search_object_graphql", "0.3.2"
+gem "souls", "0.2.5"
 gem "unicorn", "5.7.0"
 gem "whenever", require: false
 gem "will_paginate", "3.3.0"
