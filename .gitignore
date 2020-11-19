@@ -11,6 +11,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/config/souls.rb
 /elsoul.key
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
