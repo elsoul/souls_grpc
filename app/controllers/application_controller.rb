@@ -7,13 +7,4 @@ class ApplicationController < ActionController::Base
         time: Time.now
       }
   end
-
-  def db_test
-    render json:
-      {
-        success: true,
-        status: "connected!",
-        user: User.first.username
-      }
-  end
 end
