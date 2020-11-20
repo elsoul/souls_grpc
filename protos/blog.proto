@@ -3,18 +3,18 @@ syntax = "proto3";
 package Souls;
 
 service Blog {
+    // Sends a greeting
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+    // Sends another greeting
+    rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+
+    // Blog Service Sample
     rpc GetArticle(GetArticlRequest) returns (GetArticleReply) {}
-    // Demonstrates a server streamer call
     rpc GetArticles(GetArticlesRequest) returns (stream Article) {}
-    // Demonstrates a client streaming call
     rpc CreateArticle(Article) returns (CreateArticleReply) {}
     rpc UpdateArticles(stream Article) returns (UpdateArticlesReply) {}
     rpc DeleteArticle(DeleteArticlRequest) returns (DeleteArticleReply) {}
-    // Demonstrates a bidirectional streaming call
     rpc CreateArticlesInStream(stream Article) returns (stream Article) {}
-
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
-    rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
 }
 
 // The request message containing the user's name.
@@ -27,6 +27,8 @@ message HelloReply {
 string message = 1;
 }
 
+
+// Blog Protos
 message Article {
     uint32 id = 1;
     string user_id = 2;
