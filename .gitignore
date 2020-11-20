@@ -17,7 +17,7 @@
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
-
+.env
 .envrc
 /public/assets
 .byebug_history

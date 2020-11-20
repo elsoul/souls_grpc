@@ -5,6 +5,7 @@ ruby "2.7.2"
 
 gem "bcrypt", "3.1.16"
 gem "bootsnap", "1.4.9", require: false
+gem "dotenv-rails", "2.7.6"
 gem "factory_bot_rails", "6.1.0"
 gem "faker", "2.14.0"
 gem "firebase_id_token", "2.4.0"
