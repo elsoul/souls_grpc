@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: graphql-api
-  name: graphql-api
+    app: souls-api
+  name: souls-api
 spec:
   selector:
     matchLabels:
-      app: graphql-api
+      app: souls-api
   replicas: 3
   template:
     metadata:
       labels:
-        app: graphql-api
+        app: souls-api
     spec:
       containers:
-      - name: graphql-api
-        image: asia.gcr.io/elsoul2/graphql-api:0.0.1
+      - name: souls-api
+        image: asia.gcr.io/elsoul2/souls-api:0.0.1
         ports:
           - containerPort: 3000
             protocol: TCP
@@ -33,40 +33,25 @@ spec:
           initialDelaySeconds: 30
           timeoutSeconds: 1
         env:
-        - name: DB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: graphql-api-secret
-              key: db_host
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              name: graphql-api-secret
-              key: db_user
-        - name: DB_PW
-          valueFrom:
-            secretKeyRef:
-              name: graphql-api-secret
-              key: db_pw
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
-              name: graphql-api-secret
+              name: souls-api-secret
               key: secret_key_base
         - name: PROJECT_ID
           valueFrom:
             secretKeyRef:
-              name: graphql-api-secret
+              name: souls-api-secret
               key: project_id
         - name: GOOGLE_APPLICATION_CREDENTIALS
           valueFrom:
             secretKeyRef:
-              name: graphql-api-secret
+              name: souls-api-secret
               key: google_application_credentials
         - name: GRPC_SERVER_URL
           valueFrom:
             secretKeyRef:
-              name: graphql-api-secret
+              name: souls-api-secret
               key: grpc_server_url
         - name: GRPC_XDS_BOOTSTRAP
           value: "/tmp/grpc-xds/td-grpc-bootstrap.json"

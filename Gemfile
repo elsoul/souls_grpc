@@ -18,7 +18,7 @@ gem "rack-cors", "1.1.1"
 gem "rails", "6.0.3.3"
 gem "rb-readline", "0.5.5"
 gem "search_object_graphql", "0.3.2"
-gem "souls", "0.5.0"
+gem "souls", "0.5.1"
 gem "sqlite3", "~> 1.3", ">= 1.3.11"
 gem "unicorn", "5.7.0"
 gem "whenever", require: false
