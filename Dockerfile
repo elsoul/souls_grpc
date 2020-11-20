@@ -13,7 +13,6 @@ RUN gem install bundler:2.1.4
 RUN bundle
 COPY . /myapp
 
-RUN chmod 755 /myapp/public
 RUN chmod 777 -R /myapp/tmp
 RUN whenever --update-crontab
 
