@@ -12,17 +12,17 @@ module Souls
       self.unmarshal_class_method = :decode
       self.service_name = 'Souls.Blog'
 
+      # Sends a greeting
+      rpc :SayHello, ::Souls::HelloRequest, ::Souls::HelloReply
+      # Sends another greeting
+      rpc :SayHelloAgain, ::Souls::HelloRequest, ::Souls::HelloReply
+      # Blog Service Sample
       rpc :GetArticle, ::Souls::GetArticlRequest, ::Souls::GetArticleReply
-      # Demonstrates a server streamer call
       rpc :GetArticles, ::Souls::GetArticlesRequest, stream(::Souls::Article)
-      # Demonstrates a client streaming call
       rpc :CreateArticle, ::Souls::Article, ::Souls::CreateArticleReply
       rpc :UpdateArticles, stream(::Souls::Article), ::Souls::UpdateArticlesReply
       rpc :DeleteArticle, ::Souls::DeleteArticlRequest, ::Souls::DeleteArticleReply
-      # Demonstrates a bidirectional streaming call
       rpc :CreateArticlesInStream, stream(::Souls::Article), stream(::Souls::Article)
-      rpc :SayHello, ::Souls::HelloRequest, ::Souls::HelloReply
-      rpc :SayHelloAgain, ::Souls::HelloRequest, ::Souls::HelloReply
     end
 
     Stub = Service.rpc_stub_class
