@@ -11,7 +11,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-/config/souls.rb
+/config/initializers/souls.rb
 /elsoul.key
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
@@ -24,3 +24,4 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/keyfile.json
