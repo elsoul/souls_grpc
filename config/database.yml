@@ -4,11 +4,11 @@ default: &default
   username: postgres
   password: postgres
   host: localhost
-  port: 5432
+  port: 5433
 
 development:
   <<: *default
-  database: souls_api_dev
+  database: souls_dev
 
 production:
   <<: *default
@@ -20,4 +20,4 @@ production:
 
 test:
   <<: *default
-  database: souls_api_test
+  database: souls_test
