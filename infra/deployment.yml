@@ -33,26 +33,6 @@ spec:
           initialDelaySeconds: 30
           timeoutSeconds: 1
         env:
-        - name: SECRET_KEY_BASE
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: secret_key_base
-        - name: PROJECT_ID
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: project_id
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: google_application_credentials
-        - name: GRPC_SERVER_URL
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: grpc_server_url
         - name: GRPC_XDS_BOOTSTRAP
           value: "/tmp/grpc-xds/td-grpc-bootstrap.json"
         resources:
