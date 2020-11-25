@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: graphql-api-service
+  name: souls-api-service
 spec:
   selector:
-    app: graphql-api
+    app: souls-api
   type: LoadBalancer
   ports:
   - name: http
