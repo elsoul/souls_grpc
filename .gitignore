@@ -17,6 +17,7 @@
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
+/infra/config/*
 .env
 .envrc
 /public/assets
