@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: souls-api
-  name: souls-api
+    app: elquest-api
+  name: elquest-api
 spec:
   selector:
     matchLabels:
-      app: souls-api
+      app: elquest-api
   replicas: 3
   template:
     metadata:
       labels:
-        app: souls-api
+        app: elquest-api
     spec:
       containers:
-      - name: souls-api
-        image: asia.gcr.io/elsoul2/souls-api:0.0.1
+      - name: elquest-api
+        image: asia.gcr.io/el-quest/elquest-api:v1
         ports:
           - containerPort: 3000
             protocol: TCP
@@ -32,29 +32,6 @@ spec:
             port: 3000
           initialDelaySeconds: 30
           timeoutSeconds: 1
-        env:
-        - name: SECRET_KEY_BASE
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: secret_key_base
-        - name: PROJECT_ID
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: project_id
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: google_application_credentials
-        - name: GRPC_SERVER_URL
-          valueFrom:
-            secretKeyRef:
-              name: souls-api-secret
-              key: grpc_server_url
-        - name: GRPC_XDS_BOOTSTRAP
-          value: "/tmp/grpc-xds/td-grpc-bootstrap.json"
         resources:
           limits:
             cpu: "2"
@@ -62,27 +39,3 @@ spec:
           requests:
             cpu: 300m
             memory: 1500Mi
-        volumeMounts:
-        - name: grpc-td-conf
-          mountPath: /tmp/grpc-xds/
-      initContainers:
-      - args:
-        - --output
-        - "/tmp/bootstrap/td-grpc-bootstrap.json"
-        image: gcr.io/trafficdirector-prod/td-grpc-bootstrap:0.9.0
-        imagePullPolicy: IfNotPresent
-        name: grpc-td-init
-        resources:
-          limits:
-            cpu: 100m
-            memory: 100Mi
-          requests:
-            cpu: 10m
-            memory: 100Mi
-        volumeMounts:
-        - name: grpc-td-conf
-          mountPath: /tmp/bootstrap/
-      volumes:
-      - name: grpc-td-conf
-        emptyDir:
-          medium: Memory

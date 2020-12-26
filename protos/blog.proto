@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package Souls;
 
+import "google/protobuf/timestamp.proto";
+
 service Blog {
     // Sends a greeting
     rpc SayHello (HelloRequest) returns (HelloReply) {}
@@ -30,20 +32,20 @@ string message = 1;
 
 // Blog Protos
 message Article {
-    uint32 id = 1;
+    string id = 1;
     string user_id = 2;
     string title = 3;
     string body = 4;
     string thumnail_url = 5;
-    string public_date = 6;
+    uint32 public_date = 6;
     uint32 article_category_id = 7;
     bool is_public = 8;
     repeated string tag = 9;
     bool has_series = 10;
     uint32 series_id = 11;
     uint32 episode_num = 12;
-    string created_at = 13;
-    string updated_at = 14;
+    google.protobuf.Timestamp created_at = 13;
+    google.protobuf.Timestamp updated_at = 14;
 }
 
 

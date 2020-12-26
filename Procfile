@@ -1,2 +1,2 @@
-web: bundle exec unicorn -p 3000 -E production -c config/unicorn.rb
+web: bundle exec puma -p 3000 -e production
 worker: redis-server
