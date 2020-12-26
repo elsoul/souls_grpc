@@ -15,43 +15,17 @@ ActiveRecord::Schema.define(version: 2020_07_29_164603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "article_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "total_articles", default: 0
-    t.text "tag", default: [], array: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "article_series", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "category"
-    t.integer "total_episodes", default: 0
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category"], name: "index_article_series_on_category"
-    t.index ["name"], name: "index_article_series_on_name"
-  end
-
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", id: :string, force: :cascade do |t|
     t.string "user_id"
     t.string "title", null: false
     t.text "body", null: false
     t.string "thumnail_url", null: false
-    t.datetime "public_date", null: false
-    t.bigint "article_category_id", null: false
+    t.integer "public_date", null: false
+    t.string "article_category", null: false
     t.boolean "is_public", default: false
     t.text "tag", default: [], array: true
-    t.boolean "has_series", default: false
-    t.integer "series_id", default: 0
-    t.integer "episode_num", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_category_id"], name: "index_articles_on_article_category_id"
-    t.index ["has_series"], name: "index_articles_on_has_series"
-    t.index ["is_public"], name: "index_articles_on_is_public"
-    t.index ["tag"], name: "index_articles_on_tag"
+    t.integer "created_at", default: 0, null: false
+    t.integer "updated_at", default: 0, null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -91,6 +65,5 @@ ActiveRecord::Schema.define(version: 2020_07_29_164603) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "articles", "article_categories"
   add_foreign_key "user_keys", "key_groups"
 end

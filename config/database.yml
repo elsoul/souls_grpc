@@ -1,24 +1,17 @@
-default: &default
-  adapter: postgresql
-  encoding: utf8
-  username: <%= ENV.fetch("DB_USER") { "" } %>
-  port: 5432
-
 development:
-  <<: *default
-  database: elquest_api_dev
-  password: <%= ENV.fetch("DB_PW") { "" } %>
-  host: <%= ENV.fetch("DB_HOST") { "" } %>
-
-production:
-  <<: *default
-  database: elquest_api_production
-  password: <%= ENV.fetch("DB_PW") { "" } %>
-  host: <%= ENV.fetch("DB_HOST") { "" } %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
 test:
-  <<: *default
-  database: elquest_api_test_<%= ENV['TEST_ENV_NUMBER'] %>
-  password: <%= ENV.fetch("DB_PW")  { "" } %>
-  host: <%= ENV.fetch("DB_HOST")  { "" } %>
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
+  pool: 5
+  timeout: 5000

@@ -1,6 +1,5 @@
 module Mutations
-  # Zeitwerk で読み込みたいところ
-  require "./app/services/souls"
+
   class HelloWorld < BaseMutation
     field :response, String, null: false
     argument :name, String, required: false

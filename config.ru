@@ -1,5 +1,8 @@
-# This file is used by Rack-based servers to start the application.
+require "./app"
+require "graphql_playground"
 
-require_relative "config/environment"
+map "/playground" do
+  use GraphQLPlayground, endpoint: "/graphql" # endpoint to your graphql server endpoint
+end
 
-run Rails.application
+run SoulsApi

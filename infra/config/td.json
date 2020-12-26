@@ -10,14 +10,14 @@
     }
   ],
   "node": {
-    "id": "xxxxxxx",
+    "id": "63cd6746-bf7a-4cac-8609-0dd6458e6afd~10.136.2.6",
     "cluster": "cluster",
     "metadata": {
-      "TRAFFICDIRECTOR_GCP_PROJECT_NUMBER": "xxxxxxxxx",
-      "TRAFFICDIRECTOR_NETWORK_NAME": "default"
+      "TRAFFICDIRECTOR_GCP_PROJECT_NUMBER": "536340466738",
+      "TRAFFICDIRECTOR_NETWORK_NAME": "elsoul"
     },
     "locality": {
-      "zone": "us-central1-a"
+      "zone": "asia-northeast1-a"
     }
   }
 }

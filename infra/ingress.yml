@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: souls-api-ingress
+  name: elquest-api-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: souls-ip
-    ingress.gcp.kubernetes.io/pre-shared-cert: souls-ssl
+    kubernetes.io/ingress.global-static-ip-name: elquest-api-ip
+    ingress.gcp.kubernetes.io/pre-shared-cert: elquest-api-ssl
 spec:
   rules:
-  - host: souls-api.el-soul.com
+  - host: elquest-api.el-soul.com
     http:
       paths:
       - backend:
-          serviceName: souls-api-service
+          serviceName: elquest-api-service
           servicePort: 80
