@@ -4,6 +4,8 @@ require "sinatra/activerecord"
 require "rack/contrib"
 require "zeitwerk"
 require "dotenv/load"
+require "firebase_id_token"
+require "./config/initializers/firebase_id_token"
 require "graphql"
 
 loader = Zeitwerk::Loader.new
@@ -22,7 +24,7 @@ class SoulsApi < Sinatra::Base
   use Rack::JSONBodyParser
 
   get "/" do
-    message = { success: true, message: "hello" }
+    message = { success: true, message: "SOULs Running!" }
     json message
   end
 
