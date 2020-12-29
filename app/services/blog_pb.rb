@@ -18,7 +18,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :title, :string, 3
       optional :body, :string, 4
       optional :thumnail_url, :string, 5
-      optional :public_date, :uint32, 6
+      optional :public_date, :message, 6, "google.protobuf.Timestamp"
       optional :article_category_id, :uint32, 7
       optional :is_public, :bool, 8
       repeated :tag, :string, 9

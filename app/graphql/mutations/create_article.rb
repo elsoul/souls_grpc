@@ -8,7 +8,7 @@ module Mutations
     argument :title, String, required: true
     argument :body, String, required: true
     argument :thumnail_url, String, required: true
-    argument :public_date, Integer, required: true
+    argument :public_date, GraphQL::Types::ISO8601DateTime, required: true
     argument :is_public, Boolean, required: false
     argument :tag, [String], required: false
     argument :token, String, required: false
@@ -35,6 +35,8 @@ module Mutations
         puts timestamp
         puts article.to_json
         { article: article }
+      rescue StandardError => e
+        { error: e.to_s }
       rescue GRPC::BadStatus => e
         abort "ERROR: #{e.message}"
       end

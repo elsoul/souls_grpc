@@ -1,2 +1,3 @@
-class ArticleSeries < ApplicationRecord
+class ArticleSeries
+  include Mongoid::Document
 end

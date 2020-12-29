@@ -1,4 +1,4 @@
-class UserKey < ApplicationRecord
+class UserKey
   ## Relation
   belongs_to :user
   belongs_to :key_group
@@ -9,7 +9,6 @@ class UserKey < ApplicationRecord
               message: "同じ組み合わせのレコードが既に存在します。",
               scope: %i[key_group_id]
             }
-
 
   before_create do
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))

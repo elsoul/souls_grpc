@@ -37,7 +37,7 @@ message Article {
     string title = 3;
     string body = 4;
     string thumnail_url = 5;
-    uint32 public_date = 6;
+    google.protobuf.Timestamp public_date = 6;
     uint32 article_category_id = 7;
     bool is_public = 8;
     repeated string tag = 9;
