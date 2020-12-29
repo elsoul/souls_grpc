@@ -9,8 +9,9 @@ require "firebase_id_token"
 require "./config/initializers/firebase_id_token"
 require "graphql"
 require "grpc"
+require "erb"
 
-Mongoid.load!(File.join(File.dirname(__FILE__), "config", "mongoid.yml"))
+YAML.safe_load(ERB.new(File.new("./config/mongoid.yml").read).result)
 
 loader = Zeitwerk::Loader.new
 loader.push_dir("#{Dir.pwd}/app/models")
@@ -29,8 +30,6 @@ class SoulsApi < Sinatra::Base
     message = { success: true, message: "SOULs Running!" }
     json message
   end
-
-  
 
   post "/graphql" do
     token = request.env["HTTP_AUTHORIZATION"]
