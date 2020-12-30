@@ -8,7 +8,7 @@ module Mutations
     argument :title, String, required: true
     argument :body, String, required: true
     argument :thumnail_url, String, required: true
-    argument :public_date, GraphQL::Types::ISO8601DateTime, required: true
+    argument :public_date, String, required: true
     argument :is_public, Boolean, required: false
     argument :tag, [String], required: false
     argument :token, String, required: false
@@ -18,7 +18,7 @@ module Mutations
       stub = Souls::Blog::Stub.new(host, :this_channel_is_insecure)
       begin
         data = stub.create_article(Souls::Article.new(args))
-        timestamp = Date.parse(Time.at(data.article.created_at.seconds, data.article.created_at.nanos).to_s).strftime("%F %H:%M:%S")
+        timestamp = Date.parse(Time.at(Time.now.seconds, Time.now.nanos).to_s).strftime("%F %H:%M:%S")
         article = Article.new(
           id: data.article.id,
           user_id: data.article.user_id,
@@ -26,9 +26,10 @@ module Mutations
           body: data.article.body,
           thumnail_url: data.article.thumnail_url,
           public_date: data.article.public_date,
+          is_public: data.article.is_public,
           tag: data.article.tag.to_a,
-          created_at: timestamp.to_s,
-          updated_at: timestamp.to_s
+          created_at: data.created_at.to_s,
+          updated_at: data.updated_at.to_s
         )
         puts data.article.created_at.seconds
         puts data.article.created_at.nanos

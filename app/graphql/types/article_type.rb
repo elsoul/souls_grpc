@@ -10,7 +10,6 @@ module Types
     field :is_public, Boolean, null: true
     field :tag, [String], null: true
     # field :user, Types::UserType, null: true
-    field :article_category, String, null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: true
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: true
   end
