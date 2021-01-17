@@ -6,7 +6,6 @@ gem "foreman", "0.87.2"
 gem "graphql", "1.11.6"
 gem "grpc", "1.34.0"
 gem "grpc-tools", "1.34.0"
-gem "mongoid", "7.2"
 gem "puma", "5.1.0"
 gem "rack-contrib", "2.3.0"
 gem "rack-cors", "1.1.1"
@@ -14,8 +13,18 @@ gem "rake", "13.0.3"
 gem "sinatra", "2.1.0"
 gem "sinatra-contrib", "2.1.0"
 gem "sinatra-env", "0.0.2"
-gem "souls", "0.7.0"
+gem "souls", "0.8.0"
 gem "zeitwerk", "2.4.2"
+
+## Select DB gem.
+# Firestore
+# gem "google-cloud-firestore"
+
+# NoSQL
+gem "mongoid", "7.2"
+
+# PostgreSQL
+# gem "pg", ">= 0.18", "< 2.0"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

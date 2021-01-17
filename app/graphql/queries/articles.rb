@@ -4,7 +4,8 @@ module Queries
     argument :limit, Integer, required: false
 
     def resolve **args
-      client = blog_service_grpc_build_client
+      # host = blog_host
+      # stub = Souls::Blog::Stub.new(host, :this_channel_is_insecure)
       client_args = {
         limit: args[:limit].to_i || 10
       }

@@ -6,6 +6,8 @@ module Mutations
 
     def resolve token:
       fb_auth token: context[:token]
+      # host = blog_host
+      # stub = Souls::Blog::Stub.new(host, :this_channel_is_insecure)
       begin
         user = User.find @payload["sub"]
         user.update(icon_url: @payload["picture"], username: @payload["name"])

@@ -1,5 +1,4 @@
 module Mutations
-
   class CreateArticle < BaseMutation
     field :article, Types::ArticleType, null: false
     field :error, String, null: false
